@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-node
+spec:
+  selector:
+    nodeSelector:
+    dedicated: master
+    tolerations:
+    - key: dedicated
+      operator: Equal
+      value: master
+      effect: NoSchedule
+    matchLabels:
+      app: worker-node
+  replicas: 1
+  revisionHistoryLimit: 3
+  progressDeadlineSeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2
+  template:
+    metadata:
+      labels:
+        app: worker-node
+    spec:
+      containers:
+      - name: worker-node
+        image: docker.io/zsiddocker/project:kubernetes
+        ports:
+        - hostPort: 8080
+          containerPort: 8080
+
+
+

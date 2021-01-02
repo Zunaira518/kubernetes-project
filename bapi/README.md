@@ -1,12 +1,11 @@
 # Microservices using golang beego framework
 
-
-###Build
+#### Build
 ```
 docker build -t app  .
 ```
 
-###Docker Run Command
+#### Docker Run Command
 ```
    docker run -d -p 8080:8080 --name app app
 
@@ -15,9 +14,9 @@ docker build -t app  .
 #### Swagger
 `http://localhost:8080/swagger`
 
-###the master node should be tagged with dedicated: master
+#### The master node should be tagged with dedicated: master
 
-##Directory structure 
+#### Directory structure 
 Controller : contain API definitions 
 Models: contain business logic 
 Constants : container file paths 
